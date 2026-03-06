@@ -1,7 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────────
-const API = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
+const API = (() => {
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+  if (typeof window === "undefined") return "http://localhost:8000/api";
+
+  const { protocol, hostname } = window.location;
+  const isLocalHost = hostname === "localhost" || hostname === "127.0.0.1";
+  const host = isLocalHost ? "localhost" : hostname;
+
+  return `${protocol}//${host}:8000/api`;
+})();
 
 // ─── TEMAS ────────────────────────────────────────────────────────────────────
 const THEMES = {
