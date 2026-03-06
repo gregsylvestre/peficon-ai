@@ -43,8 +43,8 @@ cd backend
 
 # Criar ambiente virtual
 python -m venv venv
-source venv/bin/activate       # Linux/Mac
-# venv\Scripts\activate        # Windows
+venv\Scripts\activate        # Windows
+#source venv/bin/activate       # Linux/Mac
 
 # Instalar dependências
 pip install -r requirements.txt
